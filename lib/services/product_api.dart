@@ -1,11 +1,12 @@
 import 'dart:convert';
 
+import 'package:flutter_curd_app/views/global_variable.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/product.dart';
 
 class ProductApi {
-  static const String baseUrl = 'http://192.168.1.40:3000/api/products';
+  static final String baseUrl = '$uri/api/products';
 
   // Fetch all products
   static Future<List<Product>> fetchProducts() async {

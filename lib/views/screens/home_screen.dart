@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_curd_app/models/product.dart';
+import 'package:flutter_curd_app/views/global_variable.dart';
 import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
@@ -42,9 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // Add cache-busting query param here:
   Future<List<Product>> fetchAllProducts() async {
     final response = await http.get(
-      Uri.parse(
-        'http://192.168.1.40:3000/api/products?t=${DateTime.now().millisecondsSinceEpoch}',
-      ),
+      Uri.parse('$uri/api/products?t=${DateTime.now().millisecondsSinceEpoch}'),
       headers: {'Content-Type': 'application/json'},
     );
 
@@ -60,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<List<Product>> fetchProductsByCategory(String category) async {
     final response = await http.get(
       Uri.parse(
-        'http://192.168.1.40:3000/api/products/category/$category?t=${DateTime.now().millisecondsSinceEpoch}',
+        '$uri/api/products/category/$category?t=${DateTime.now().millisecondsSinceEpoch}',
       ),
       headers: {'Content-Type': 'application/json'},
     );
