@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_curd_app/models/user.dart';
 import 'package:flutter_curd_app/services/manage.http_response.dart';
-import 'package:flutter_curd_app/views/main_screen.dart';
 import 'package:flutter_curd_app/views/screens/authentication_screens/login_screen.dart';
 import 'package:flutter_curd_app/views/screens/global_variable.dart';
+import 'package:flutter_curd_app/views/screens/nav_screens/home_screen.dart';
 import 'package:http/http.dart' as http;
 
 class AuthController {
@@ -78,7 +78,7 @@ class AuthController {
         onSuccess: () {
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => MainScreen()),
+            MaterialPageRoute(builder: (context) => HomeScreen()),
             (route) => false,
           );
           showSnackBar(context, "Logged In");
