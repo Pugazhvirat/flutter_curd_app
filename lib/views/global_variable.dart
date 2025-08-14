@@ -1,1 +1,1 @@
-String uri = "http://192.168.1.40:3000";
+String uri = "https://flutter-curd-app-backend.onrender.com";

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_curd_app/models/product.dart';
 import 'package:flutter_curd_app/services/product_api.dart';
+import 'package:flutter_curd_app/views/screens/welcome_screen.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({Key? key}) : super(key: key);
@@ -147,7 +148,20 @@ class _ProductScreenState extends State<ProductScreen> {
         title: const Text('Admin Product Management'),
         backgroundColor: Colors.deepPurple,
         foregroundColor: Colors.white,
+        actions: [
+          TextButton.icon(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+              );
+            },
+            icon: const Icon(Icons.logout, color: Colors.white),
+            label: const Text('Logout', style: TextStyle(color: Colors.white)),
+          ),
+        ],
       ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(

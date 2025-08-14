@@ -12,8 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Product CRUD',
+      debugShowCheckedModeBanner: false, // Removes the debug banner
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: WelcomeScreen(),
+      home: const WelcomeScreen(),
     );
   }
 }

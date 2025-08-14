@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_curd_app/models/product.dart';
 import 'package:flutter_curd_app/views/global_variable.dart';
+import 'package:flutter_curd_app/views/screens/welcome_screen.dart';
 import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
@@ -40,7 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  // Add cache-busting query param here:
   Future<List<Product>> fetchAllProducts() async {
     final response = await http.get(
       Uri.parse('$uri/api/products?t=${DateTime.now().millisecondsSinceEpoch}'),
@@ -251,10 +251,21 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }),
             const Spacer(),
+            // Logout button at the end of the drawer
             ListTile(
-              leading: const Icon(Icons.close),
-              title: const Text('Close Drawer'),
-              onTap: () => Navigator.pop(context),
+              leading: const Icon(Icons.logout, color: Colors.deepPurple),
+              title: const Text(
+                'Logout',
+                style: TextStyle(color: Colors.deepPurple),
+              ),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const WelcomeScreen(),
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -268,17 +279,17 @@ class _HomeScreenState extends State<HomeScreen> {
       key: _scaffoldKey,
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text('Products'),
+        title: const Text('Products', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.deepPurple,
         leading: IconButton(
-          icon: const Icon(Icons.menu),
+          icon: const Icon(Icons.menu, color: Colors.white),
           onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
+            icon: const Icon(Icons.refresh, color: Colors.white),
             tooltip: 'Refresh Products',
-            onPressed: _loadAllProducts, // Manual refresh button
+            onPressed: _loadAllProducts,
           ),
         ],
       ),
